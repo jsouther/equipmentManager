@@ -1,0 +1,14 @@
+{
+  "name": "Get_Post_Checker",
+  "version": "1.0.0",
+  "description": "Hello world with express and node.js",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.11.3",
+    "handlebars-helpers": "^0.10.0",
+    "mysql": "^2.8.0"
+  }
+}

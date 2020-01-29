@@ -1,0 +1,30 @@
+/***********************************************************
+** Author:  Jacob Souther and Felicia Ottley
+** Date: 3/9/19
+************************************************************/
+
+
+table, th, td{
+  border-style:solid;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+table{
+  table-layout: fixed; width: 95%
+}
+
+body{
+background-color: #4682b4;
+}
+
+.long{
+  width: 50%;
+}
+
+#chromeNote{
+	color: #cc0000;
+	background: white;
+	text-align: center;
+	
+}

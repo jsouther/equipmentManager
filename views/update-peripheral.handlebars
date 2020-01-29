@@ -1,0 +1,50 @@
+<h1>Update {{peripheral.make}} {{peripheral.model}}:</h1>
+
+<form id="update-peripheral" action="/peripherals" method="post">
+      <fieldset>
+        <label>Equipment Type:
+          <select name="equip_type" required>
+            <option value="{{peripheral.equip_type}}">{{peripheral.equip_type}}</option>           
+            <option value="Keyboard">Keyboard</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Webcam">Webcam</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Headset">Headset</option>
+            <option value="Dock">Dock</option>
+          </select>
+        *</label><br>
+
+        <label> Make:
+          <input type="text" maxlength="25" name="make" id="make" value="{{peripheral.make}}" required>
+        *</label><br>
+
+        <label>Model:
+          <input type="text" maxlength="25" name="model" id="model" value="{{peripheral.model}}" required>
+        *</label><br>
+
+        <label>User:
+          <select name="assigned_user" id="user-selector">
+            <option value="NULL">No User</option>
+            {{#each user}}
+            <option value="{{Id}}">{{pref_email}}</option>
+            {{/each}}
+          </select>
+        </label><br>
+
+        <button type="button" id="sumbitbutton" onclick="updatePeripheral({{peripheral.Id}})">Update Peripheral</button>
+      </fieldset>
+    </form>
+    
+    <script>selectUser({{peripheral.assigned_user}});
+    
+    // const makeUp = document.getElementById('make');
+    // const subButt = document.getElementById('sumbitbutton');
+    // makeUp.addEventListener('keyup', function() {
+    //     if(makeUp.value === ''){
+    //       subButt.disabled = true;
+    //     } else {
+    //       subButt.disabled = false;
+    //     }
+    // });
+    
+    </script>

@@ -1,0 +1,153 @@
+<a href="/index">Return to Index</a>
+
+    <h1>Users</h1>
+
+    <p>This page is used to add, remove, edit and search users. <br>* Indicates required field.</p>
+
+    <h3>Add User</h3>
+    <form action="/users" method="post">
+      <fieldset>
+        <label> First Name:
+          <input type="text" maxlength="50" name="fname_input" required>
+        *</label><br>
+
+        <label>Last Name:
+          <input type="text" maxlength="50" name="lname_input" required>
+        *</label><br>
+
+        <label>Department:
+          <select name="department_input" required>
+            <option hidden disabled selected value> -- select an option -- </option>
+            <option value="Executive">Executive</option>
+            <option value="Admin">Admin</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Operations">Operations</option>
+            <option value="Sales">Sales</option>
+            <option value="IT">IT</option>
+            <option value="Marketing">Marketing</option>
+            <option value="HR">HR</option>
+          </select>
+        *</label><br>
+
+        <label>Job Title:
+          <input type="text" maxlength="75" name="title_input" required>
+        *</label><br>
+
+        <label>Phone Number:
+          <input type="tel" name="phone_input" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" required>
+          <span>* Format: 1234567890</span>
+        </label><br>
+
+        <label>Email:
+          <input type="email" name="email_input" maxlength="65" required>
+        *</label><br>
+
+        <label>Office:
+          <select name="location" required>
+          <option hidden disabled selected value> -- select an option -- </option>
+            {{#each location}}
+            <option value="{{Id}}">{{city}}</option>
+            {{/each}}
+          </select>
+        *</label><br>
+
+        <label>Laptop Serial Number:
+          <select name="laptop_input" id="laptop_input" required>
+          <option hidden disabled selected value> -- select an option -- </option>
+          <option value="NULL">No Laptop</option>
+            {{#each laptop}}
+            <option value="{{Id}}">{{sn}}</option>
+            {{/each}}
+          </select>
+        </label><br>
+
+        <input type="submit" value="Add User">
+      </fieldset>
+    </form>
+
+    <h3>View/Search Users</h3>
+
+    <form action="/users/search" method="POST">
+      <fieldset>
+        <legend>Search User</legend>
+ {{!-- {{COMMENTED OUT Extra search fields}}      
+	   <label> First Name:
+          <input type="text" maxlength="50" name="fname_search">
+        </label><br>
+
+        <label>Last Name:
+          <input type="text" maxlength="50" name="lname_search">
+        </label><br>
+
+        <label>Department:
+          <select name="department_search">
+            <option hidden disabled disabled selected value> -- select an option -- </option>
+            <option value="Executive">Executive</option>
+            <option value="Admin">Admin</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Operations">Operations</option>
+            <option value="Sales">Sales</option>
+            <option value="IT">IT</option>
+            <option value="Marketing">Marketing</option>
+            <option value="HR">HR</option>
+          </select>
+        </label><br>
+
+        <label>Job Title:
+          <input type="text" maxlength="75" name="title_search">
+        </label><br>
+
+        <label>Phone Number:
+          <input type="tel" name="phone_search" pattern="[0-9]{3}[0-9]{3][0-9]{4}" maxlength="10">
+          <span>Format: 1234567890</span>
+        </label><br>
+  --}}
+        <label>Email:
+          <input type="email" name="email_search" maxlength="65">
+        </label><br>
+ {{!-- {{COMMENTED OUT Extra search fields}}  
+        <label>Office:
+          <select name="location">
+            {{#each location}}
+            <option value="{{Id}}">{{city}}</option>
+            {{/each}}
+          </select>
+        </label><br>
+  --}}
+        <input type="submit" value="Search">
+		<button type="button" onclick="window.location.href='/users'">Reset Search</button>
+      </fieldset>
+    </form><br>
+    
+    <table>
+        <thead>
+          <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Department</td>
+            <td>Job Title</td>
+            <td>Phone Number</td>
+            <td>Email</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Laptop SN</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          {{#each users}}
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{department}}</td>
+            <td>{{job_title}}</td>
+            <td>{{pref_phone}}</td>
+            <td>{{pref_email}}</td>
+            <td>{{city}}</td>
+            <td>{{state}}</td>
+            <td>{{sn}}</td>
+            <td><a href="/users/{{Id}}">Edit User</a></td>
+			<td><button onclick="deleteUser({{Id}})">Delete</button></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>

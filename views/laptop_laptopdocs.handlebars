@@ -1,0 +1,57 @@
+<a href="/index">Return to Index</a>
+
+<h1>Document to Laptop Relationship Management</h1>
+<p>This page is used to add and remove relationships between laptops and documentation</p>
+
+<h3>Relate document to laptop</h3>
+
+
+<form id="addDocsToLaptops" action="/laptop_laptopdocs" method="post">
+      <fieldset>
+        <label> Laptop:
+			<select name="laptop" id="laptop" required>
+			{{#each laptops}}
+			<<option value='{{Id}}'> {{make}} {{model}}          S/N: {{sn}}          Assigned to: {{first_name}} {{last_name}}</option>
+			{{/each}}
+			</select>
+		</label><br><br><br>
+		
+		 <label> Documents:
+			<select name="document" id="documents" required>
+			{{#each laptop_docs}}
+			<<option value='{{Id}}'> {{title}}</option>
+			{{/each}}
+			</select>
+		</label><br><br>
+
+
+		<input type="submit" value="Add">      
+		</fieldset>
+    </form>
+	
+<h3>	Laptop/Document Relationships </h3>
+
+    <table>
+        <thead>
+          <tr>
+            <td>Laptop Id</td>
+            <td>Laptop Make</td>
+			<td>Laptop Model</td>
+			<td>Laptop Serial Number</td>
+			<td>Document Title</td>
+			<td>Delete</td>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each laptopDocs}}
+			<tr>
+				<td>{{LaptopId}}</td>
+				<td>{{make}}</td>
+				<td>{{model}}</td>
+				<td>{{sn}}</td>
+				<td>{{title}}</td>
+				<td><button onclick="deleteLtDocRelation({{Id}})">Delete</button></td>
+			</tr>
+			{{/each}}
+			</tbody>
+			</table>

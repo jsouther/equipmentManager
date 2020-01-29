@@ -1,0 +1,109 @@
+ <a href="/index">Return to Index</a>
+
+    <h1>Peripherals</h1>
+
+    <p>This page is used to add, view and remove peripherals. <br>* Indicates required field.</p>
+
+    <h3>Add Peripheral</h3>
+    <form id="new_peripherals" action="/peripherals" method="post">
+      <fieldset>
+        <label>Equipment Type:
+          <select name="type_input" id="type_input" required>
+            <option hidden disabled selected value> -- select an option -- </option>
+            <option value="Keyboard">Keyboard</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Webcam">Webcam</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Headset">Headset</option>
+            <option value="Dock">Dock</option>
+          </select>
+        *</label><br>
+
+        <!--<label> Asset Number:
+          <input type="text" maxlength="25" name="assetnum_input" id="assetnum_input" required>
+        *</label><br>-->
+
+        <label> Make:
+          <input type="text" maxlength="25" name="make_input" id="make_input" required>
+        *</label><br>
+
+        <label>Model:
+          <input type="text" maxlength="25" name="model_input" id="model_input" required>
+        *</label><br>
+
+        <label>User:
+          <select name="assigned_user_input" id="assigned_user_input">
+          <option hidden disabled selected value> -- select an option -- </option>
+          <option value="NULL">No User</option>
+            {{#each user}}
+            <option value="{{Id}}">{{pref_email}}</option>
+            {{/each}}
+          </select>
+        </label><br>
+
+        <input type="submit" id="add_peripheral" value="Add Peripheral">
+      </fieldset>
+    </form>
+
+    <h3>View/Remove Peripheral</h3>
+<!--  Remove Search on this page
+      <form>
+        <fieldset>
+          <legend>Search for peripheral</legend>
+
+          <label>Equipment Type:
+            <select name="type_search">
+              <option hidden disabled disabled selected value> -- select an option -- </option>
+              <option value="Keyboard">Keyboard</option>
+              <option value="Mouse">Mouse</option>
+              <option value="Webcam">Webcam</option>
+              <option value="Monitor">Monitor</option>
+              <option value="Headset">Headset</option>
+              <option value="Dock">Dock</option>
+            </select>
+          </label><br>
+
+          <label> Asset Number:
+            <input type="text" maxlength="25" name="assetnum_search">
+          </label><br>
+
+          <label> Make:
+            <input type="text" maxlength="25" name="make_search">
+          </label><br>
+
+          <label>Model:
+            <input type="text" maxlength="25" name="model_search">
+          </label>
+
+          <br><input type="submit" value="Search">
+
+        </fieldset>
+      </form><br>
+	  -->
+
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Equipment Type</td>
+            <td>Make</td>
+            <td>Model</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each peripherals}}
+          <tr>
+            <td>{{Id}}</td>
+            <td>{{equip_type}}</td>
+            <td>{{make}}</td>
+            <td>{{model}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td><a href="/peripherals/{{Id}}">Edit Peripheral</a></td>
+            <td><button onclick="deletePeripheral({{Id}})">Delete</button></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>

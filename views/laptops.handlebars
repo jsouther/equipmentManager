@@ -1,0 +1,118 @@
+ <a href="/index">Return to Index</a>
+
+    <h1>Laptops</h1>
+
+    <p>This page is used to add or remove laptops. <br>* Indicates required field.</p>
+
+    <h3>Add Laptop</h3>
+    <form id="newLaptop" action="/laptops" method="post">
+      <fieldset>
+        <label>Make:
+          <select id="make_input" name="make_input" required>
+            <option hidden disabled disabled selected value> -- select an option -- </option>
+            <option value="Dell">Dell</option>
+            <option value="HP">HP</option>
+          </select>
+        *</label><br>
+
+        <label> Model:
+          <input type="text" maxlength="25"  id="model_input" name="model_input" required>
+        *</label><br>
+
+        <label>Serial Number:
+          <input type="text" maxlength="25" id="serial_input" name="serial_input" required>
+        *</label><br>
+
+        <label>Purchase Date:
+          <input type="date" id="purchase_date_input" name="purchase_date_input" required>
+        *</label><br>
+
+        <label>Warranty End Date:
+          <input type="date" id="warranty_date_input"  name="warranty_date_input">
+        </label><br>
+
+        <label>CPU:
+          <input type="text" maxlength="25" id="cpu_input" name="cpu_input" required>
+        *</label><br>
+
+        <label>RAM (GB):
+          <input type="number" min="1" max="999" id="ram_input" name="ram_input" required>
+        *</label><br>
+
+        <input type="submit" value="Add Laptop" id="add_Laptop"><br>
+
+      </fieldset>
+    </form>
+
+    {{!--COMMENTED OUT Don't need remove form, just use button in table
+    <h3>Remove Laptop</h3>
+      <form>
+        <fieldset>
+          <label>Enter serial number of laptop to remove:
+            <input type="text" name="remove_laptop" maxlength="25" required>
+          </label>
+
+          <input type="submit" value="Remove Laptop">
+        </fieldset>
+      </form>
+      --}}
+
+    <h3>View/Search Laptops</h3>
+
+    <form action="/laptops/search" method="POST">
+      <fieldset>
+        <legend>Search for laptop</legend>
+       {{!-- COMMENTED OUT extra search fields
+	   <label>Serial
+          <input type="text" maxlength="25" name="serial_search">
+        </label><br>
+
+        <label>Make
+          <select name="make_search">
+              <option hidden disabled disabled selected value> -- select an option -- </option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+          </select>
+        </label>
+		--}}
+
+        <label>Model: 
+          <input type="text" maxlength="25" name="model_search">
+        </label>
+        <br><input type="submit" value="Search">
+		<button type="button" onclick="window.location.href='/laptops'">Reset Search</button>
+
+      </fieldset>
+    </form>
+
+    <h3>All Laptops</h3>
+    <table>
+      <thead>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Serial Number</th>
+        <th>Purchase Date</th>
+        <th>Warranty End Date</th>
+        <th>CPU</th>
+        <th>RAM</th>
+		<th>Edit</th>
+		<th>Delete</th>
+      </thead>
+      <tbody>
+        {{#each laptops}}
+        <tr>
+          <td>{{make}}</td>
+          <td>{{model}}</td>
+          <td>{{sn}}</td>
+          <td>{{moment purchase_date format="YYYY-MM-DD"}}</td>
+          <td>{{moment warranty_end_date format="YYYY-MM-DD"}}</td>
+          <td>{{cpu}}</td>
+          <td>{{ram}}</td>
+          <td><a href="/laptops/{{Id}}">Edit Laptop</a></td>
+          <td><button onclick="deleteLaptop({{Id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+	
+	

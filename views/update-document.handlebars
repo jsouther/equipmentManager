@@ -1,0 +1,26 @@
+<h1>Update "{{document.title}}":</h1>
+
+<form id="update-document" action="/laptop_docs" method="post">
+  <fieldset>
+      <label> Title:
+        <input type="text" maxlength="100" name="title" id="title" class="long" value="{{document.title}}" required>
+      *</label><br>
+
+      <label> Document Web Link:
+        <input type="text" maxlength="255" name="doc_link" id="link" class="long" value="{{document.doc_link}}" required>
+      *</label><br>
+
+<!--       <label>PC Make:
+        <select name="make_input">
+            <option value="Dell">Dell</option>
+            <option value="HP">HP</option>
+        </select>
+      </label><br>
+
+      <label>PC Model:
+        <input type="text" maxlength="25" name="model_input">
+      </label><br> -->
+
+      <button onclick="updateDocument({{document.Id}})">Update Document</button>
+    </fieldset>
+  </form>

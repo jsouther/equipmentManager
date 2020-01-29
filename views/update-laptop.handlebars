@@ -1,0 +1,41 @@
+<h1>Update Laptop {{laptop.sn}}:</h1>
+
+<form id="update-laptop" action="/laptops" method="post">
+      <fieldset>
+        <label>Make:
+          <select id="make" name="make" required>
+            <option value="{{laptop.make}}">{{laptop.make}}</option>
+            <option value="Dell">Dell</option>
+            <option value="HP">HP</option>
+          </select>
+        *</label><br>
+
+        <label> Model:
+          <input type="text" maxlength="25"  id="model" name="model" value="{{laptop.model}}" required>
+        *</label><br>
+
+        <label>Serial Number:
+          <input type="text" maxlength="25" id="sn" name="sn" value="{{laptop.sn}}" required>
+        *</label><br>
+
+        <label>Purchase Date:
+          <input type="date" id="purchase_date" name="purchase_date" value="{{moment laptop.purchase_date format="YYYY-MM-DD"}}" required>
+        *</label><br>
+
+        <label>Warranty End Date:
+          <input type="date" id="warranty_end_date" name="warranty_end_date" value="{{moment laptop.warranty_end_date format="YYYY-MM-DD"}}">
+        </label><br>
+
+        <label>CPU:
+          <input type="text" maxlength="25" id="cpu" name="cpu" value="{{laptop.cpu}}" required>
+        *</label><br>
+
+        <label>RAM (GB):
+          <input type="number" min="1" max="999" id="ram" name="ram" value="{{laptop.ram}}" required>
+        *</label><br>
+
+        <button onclick="updateLaptop({{laptop.Id}})">Update Laptop</button>
+      </fieldset>
+    </form>
+    
+    {{!--<script>selectLocation({{user.home_office}});</script>--}}

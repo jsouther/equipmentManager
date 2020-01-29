@@ -1,0 +1,104 @@
+    <a href="/index">Return to Index</a>
+
+    <h1>Laptop Troubleshooting Documentation</h1>
+
+    <p>This page is used to add, remove, edit and search laptop troubleshooting documentation. <br>* Indicates required field.</p>
+
+    <h3>Add Documentation</h3>
+    <form id="new_laptop_doc" action="/laptop_docs" method="post">
+      <fieldset>
+        <label> Title:
+          <input type="text" maxlength="100" name="title_input" class="long" required>
+        *</label><br>
+
+        <label> Document Web Link:
+          <input type="text" maxlength="255" name="link_input" class="long" required>
+        *</label><br>
+
+    <!--  commented out, decided not to use 
+		<label>PC Make:
+          <select name="make_input">
+              <option hidden disabled disabled selected value> -- select an option -- </option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+          </select>
+        </label><br>
+
+        <label>PC Model:
+          <input type="text" maxlength="25" name="model_input">
+        </label><br>
+-->
+        <input type="submit" value="Add Documentation">
+      </fieldset>
+    </form>
+
+    <h3>Search for documents by laptop Make/Model</h3>
+
+	<form id="searchDocs_Laptops" action="/laptop_docs/search" method="post">
+      <fieldset>
+        <label> Laptop:
+			<select name="laptop" id="laptop" required>
+			{{#each laptops}}
+			<<option value='{"make": "{{make}}", "model" : "{{model}}"}'> {{make}} {{model}} </option>
+			{{/each}}
+			</select>
+		</label><br>
+
+
+		<input type="submit" value="Search"> 
+		<button type="button" onclick="window.location.href='/laptop_docs'">Reset Search</button>		
+		</fieldset>
+    </form>
+	
+	
+	<!-- commeted out using different form
+    <form>
+      <fieldset>
+        <legend>Search for document</legend>
+        <label>Title:
+          <input type="text" maxlength="25" name="serial_search">
+        </label><br>
+
+        <label>PC Make:
+          <select name="make_search">
+              <option hidden disabled disabled selected value> -- select an option -- </option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+          </select>
+        </label><br>
+
+        <label>PC Model:
+          <input type="text" maxlength="25" name="model_search">
+        </label>
+
+        <br><input type="submit" value="Search">
+
+      </fieldset>
+    </form><br>
+-->
+    <h3>Documents</h3>
+    <table>
+      <thead>
+	  <!-- commenting out, not diplaying this in table
+        <th>Make</th>
+        <th>Model</th>
+		
+	-->
+        <th>Doc Title</th>
+        <th>Doc Link</th>
+      </thead>
+      <tbody>
+        {{#each laptop_docs}}
+        <tr>
+<!-- commenting out, decided not to display       
+	   <td>{{make}}</td>
+          <td>{{model}}</td>
+		  -->
+          <td>{{title}}</td>
+          <td>{{doc_link}}</td>
+          <td><a href="/laptop_docs/{{Id}}">Edit Document</a></td>
+		  <td><button onclick="deleteLaptopDoc({{Id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
